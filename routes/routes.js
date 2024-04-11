@@ -10,6 +10,8 @@ const cron = require('node-cron');
 const app = express();
 require("dotenv").config();
 const cors = require("cors");
+const hardhatController = require("../hardhat.controller");
+
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(cors());
@@ -397,6 +399,9 @@ router.post('/userorder',exuserController.getUserOrder.bind());
 router.get('/coinList', exuserController.coinList.bind());
 router.post('/pairlist', exuserController.pairList.bind());
 router.post('/getUserPiarBalance', exuserController.getUserPiarBalance.bind());
+
+router.get("/getbalance", hardhatController.getBalance.bind());
+
 router.post('/getQR',  exuserController.getQR.bind());
 router.post('/emailotp', ensureWebToken, exuserController.Email_otp.bind());
 // router.post('/disableemailauth',ensureWebToken,  exuserController.disableemailauth.bind());
